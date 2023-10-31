@@ -1,0 +1,47 @@
+[
+    {
+        "name": "users",
+        "icon": "nav-icon fas fa-tachometer-alt",
+        "route": "users.index",
+        "children": [
+            {
+                "name": "list users",
+                "route": "users.index"
+            },
+            {
+                "name": "create new user",
+                "route": "users.create"
+            }
+        ]
+    },
+    {
+        "name": "categories",
+        "icon": "nav-icon fas fa-tachometer-alt",
+        "route": "categories.index",
+        "children": [
+            {
+                "name": "list categories",
+                "route": "categories.index"
+            },
+            {
+                "name": "create new category",
+                "route": "categories.create"
+            }
+        ]
+    },
+    {
+        "name": "products",
+        "icon": "nav-icon fas fa-tachometer-alt",
+        "route": "products.index",
+        "children": [
+            {
+                "name": "list products",
+                "route": "products.index"
+            },
+            {
+                "name": "create new product",
+                "route": "products.create"
+            }
+        ]
+    }
+]
