@@ -87,15 +87,32 @@ class CategoryController extends Controller
     //        $media =  $index->getMedia('images');
 
     // // dd($index);
+    // $category = new category();
 
-//    $index= QueryBuilder::for(Category::class)
-//     ->allowedFields('products.id', 'products.name')
-//     ->allowedIncludes('products')->get();
+    // // $index = QueryBuilder::for(Category::class)
+    // // ->where('model_id', 1)
+    // // ->where('model_type', Category::class)
+    // // ->allowedFields('media.model_id', 'media.model_type')
+    // // ->allowedIncludes('media');
 
-   
+    // $categories = Category::with('media')->get();
 
-    // return response()->json($index);
-        $index = $this->categoryRepository->spatie()->all();
+
+    // // dd($categories->getMediaFirstUrl());
+
+    // // $images = collect();
+
+    // foreach ($categories as $category) {
+    //     $images = $category->getMedia('images');
+    //     // dd($images);
+
+    //     return response()->json($images->getUrl());
+
+    // }
+
+
+    
+        $index = $this->categoryRepository->spatie()->paginate(1);
 
         $this->setData('title', __('main.show-all') . ' ' . __('main.category'));
 
@@ -141,6 +158,7 @@ class CategoryController extends Controller
         if($store){
             $this->setData('data', $store);
             $store->addMediaFromRequest('image')->toMediaCollection('images');
+            $store->addMultipleMediaFromRequest('logos')->toMediaCollection('logos');
 
             $this->redirectRoute("{$this->resourceRoute}.show",[$store->id]);
             $this->useCollection(CategoryResource::class, 'data');

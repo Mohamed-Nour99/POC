@@ -58,7 +58,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $index = $this->productRepository->spatie()->all();
+        $index = $this->productRepository->spatie()->paginate(1);
 
         $this->setData('title', __('main.show-all') . ' ' . __('main.product'));
 
