@@ -23,11 +23,9 @@ class CategoryRepositoryEloquent extends EloquentRepository implements CategoryR
     protected $allowedFields = [
         'id',
         'name',
+        'products.category_id',
         'products.id',
         'products.name',
-        'products.category_id',
-        'media.id',
-        
 
     ];
 
@@ -38,12 +36,14 @@ class CategoryRepositoryEloquent extends EloquentRepository implements CategoryR
      */
     protected $allowedIncludes = [
        'products',
+       'medias',
+       'logo',
+       'images',
        'media'
        
     ];
 
     protected $allowedFilterScopes = [
-        'filterByImageType'
     ];
 
 
@@ -65,7 +65,7 @@ class CategoryRepositoryEloquent extends EloquentRepository implements CategoryR
     public function relations()
     {
         return [
-            'media'
+
         ];
     }
 }

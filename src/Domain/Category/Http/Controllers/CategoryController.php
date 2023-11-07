@@ -110,9 +110,40 @@ class CategoryController extends Controller
 
     // }
 
+    // $category = Category::find(1);
+    // $category->getMedia('images')->first()->getUrl('thumb');
+
+    // if (!$category) {
+    //     return response()->json(['message' => 'Category not found'], 404);
+    // }
+
+    // // Select the desired columns
+    // $columns = $request->query('columns', '*'); // Default to all columns if 'columns' parameter is not provided
+    // $selectedColumns = explode(',', $columns);
 
     
-        $index = $this->categoryRepository->spatie()->paginate(1);
+
+    // // Include image and logos if requested
+    // if (in_array('image', $selectedColumns)) {
+    //     $category->getFirstMediaUrl('images');
+    // }
+
+    // if (in_array('logos', $selectedColumns)) {
+    //     $category->loadMedia('logos');
+    // }
+
+    // $category = $category->select($selectedColumns)->first();
+
+    // return response()->json($category);
+
+    //  $perPage = $request->input('per_page'); // Set your default per page value
+
+    //     $index = Category::with('products')
+    //         ->paginate($perPage);
+
+
+    
+        $index = $this->categoryRepository->spatie()->paginate();
 
         $this->setData('title', __('main.show-all') . ' ' . __('main.category'));
 
@@ -158,7 +189,8 @@ class CategoryController extends Controller
         if($store){
             $this->setData('data', $store);
             $store->addMediaFromRequest('image')->toMediaCollection('images');
-            $store->addMultipleMediaFromRequest('logos')->toMediaCollection('logos');
+            $store->addMultipleMediaFromRequest(['logos'])->each( function ($fileadder){
+                $fileadder->toMediaCollection('logos');});
 
             $this->redirectRoute("{$this->resourceRoute}.show",[$store->id]);
             $this->useCollection(CategoryResource::class, 'data');

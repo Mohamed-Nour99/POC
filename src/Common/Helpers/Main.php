@@ -201,3 +201,13 @@ function formatModelValuesToVueComponent(array $modelToArray, string $key = 'id'
 
     return collect($return)->toJson();
 }
+
+function returnImages($request)
+{
+    $data = null;
+    foreach ($request as $req) {
+        $data[] = $req->getURL();
+    }
+
+    return $data;
+}

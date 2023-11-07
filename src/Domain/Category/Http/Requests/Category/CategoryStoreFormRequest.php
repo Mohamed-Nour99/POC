@@ -27,6 +27,8 @@ class CategoryStoreFormRequest extends FormRequest
             'name_ar'        => ['required', 'string', 'max:255'],
             'name_en'        => ['required', 'string', 'max:255'],
             'image'          => ['required'],
+            'logos'          => ['required' , 'array'],
+            'logos.*'        => ['required']
 
         ];
         return $rules;
