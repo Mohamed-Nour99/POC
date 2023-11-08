@@ -26,6 +26,7 @@ class CategoryRepositoryEloquent extends EloquentRepository implements CategoryR
         'products.category_id',
         'products.id',
         'products.name',
+        
 
     ];
 

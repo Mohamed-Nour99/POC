@@ -11,6 +11,7 @@ use Src\Infrastructure\AbstractModels\BaseModel as Model;
 use Src\Domain\Category\Entities\Traits\Relations\CategoryRelations;
 use Src\Domain\Category\Entities\Traits\CustomAttributes\CategoryAttributes;
 use Src\Domain\Category\Repositories\Contracts\CategoryRepository;
+use Src\Domain\Product\Entities\Product;
 
 class Category extends Model implements HasMedia
 {
@@ -86,5 +87,17 @@ class Category extends Model implements HasMedia
     
             return null;
         
+    }
+
+    protected $appends = ['category_id'];
+
+    public function getCategoryIdAttribute()
+    {
+        return $this->products->pluck('category_id')->first();
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

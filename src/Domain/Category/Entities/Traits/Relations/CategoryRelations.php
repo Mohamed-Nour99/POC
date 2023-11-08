@@ -15,20 +15,27 @@ use Src\Domain\Product\Entities\Product;
 
 trait CategoryRelations
 {
-    public function products(): HasMany
-    {
-        return $this->hasMany(Product::class , 'category_id','id');
 
-    }
+
+    // public function getCategoryIdDefaultAttribute()
+    // {
+    //     return $this->products()->select('category_id');
+    // }
+    // public function products(): HasMany
+    // {
+    //     return $this->hasMany(Product::class , 'category_id','id');
+
+    // }
+
 
     public function medias()
     {
         return $this->morphMany(Media::class, 'model');
     }
 
-    public function logo()
+    public function logo() :MorphMany
     {
-        return $this->medias()->where('collection_name','logos');
+        return $this->MorphMany(Media::class, 'model')->where('collection_name','logos');
     }
 
     public function images()

@@ -72,4 +72,12 @@ class Product extends Model implements HasMedia
     protected $routeRepoBinding = ProductRepository::class;
 
     public $translatable = ['name'];
+
+    public function scopeHideCategoryId($query)
+    {
+        return $query->makeHidden('category_id');
+    }
+
+    protected $builder = ProductBuilder::class;
+
 }

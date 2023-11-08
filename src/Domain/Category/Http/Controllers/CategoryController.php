@@ -7,6 +7,7 @@ use Src\Domain\Category\Http\Requests\Category\CategoryStoreFormRequest;
 use Src\Domain\Category\Http\Requests\Category\CategoryUpdateFormRequest;
 use Src\Domain\Category\Repositories\Contracts\CategoryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\QueryBuilder\QueryBuilder;
 use theaddresstech\DDD\Traits\Responder;
@@ -142,6 +143,22 @@ class CategoryController extends Controller
     //         ->paginate($perPage);
 
 
+    // $index = QueryBuilder::for(Category::class)
+    // ->allowedFields(['products.id', 'products.name' ])
+    // ->allowedIncludes('products')->get();
+
+    // $products = Category::with(['products' => function ($query) {
+    //     $query->excludeCategoryId();
+    // }])->select('id', 'name')->get();
+
+    // $categories = Category::with('products')->get();
+
+
+    // // $categories = Category::with(['products' => function ($query) {
+    // //     $query->select('id', 'name' ); // Specify the columns you want from the "Product" table
+    // // }])->get();
+
+    // return $categories;
     
         $index = $this->categoryRepository->spatie()->paginate();
 

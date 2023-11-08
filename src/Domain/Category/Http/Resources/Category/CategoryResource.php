@@ -20,13 +20,13 @@ class CategoryResource extends JsonResource
     {
         return [
 
-            $this->attributes(['id', 'name', 'media','deleted_at']),
+            $this->attributes(['id', 'name', 'logo', 'images', 'deleted_at']),
             // 'id'               => $this->when($request->has('id')   || $request->has('include,id')  || empty($request->all()), $this->id),
             // // 'name_en'          => $this->name,
             // // 'name_ar'          => $this->name,   
             // 'name'             => $this->when($request->has('name')  || $request->has('include')&& $request->has('name')  || empty($request->all()), $this->name),
             // 'image'            => $this->when($request->has('image') || $request->has('include')&& $request->has('image') || empty($request->all()), $this->getFirstMediaUrl('images')),
-            // 'image'            => $this->getFirstMediaUrl('images'),
+            'images'            => new MediaCollection($this->whenLoaded('images')),
             // 'logos'            => returnImages($this->getMedia('logos')),
             // 'products'         => $this->whenLoaded('products' , function() use ($request){
             //     return ProductResourceCollection::make($this->products()->Paginate($request->input('product_paginate')));
